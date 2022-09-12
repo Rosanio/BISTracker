@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "jFTfcz9YgsGuoHoOUc3UA/Fi+2KMJV6sxK1qcX5uR6E=",
+  "Source": "BISTrackerBackend",
+  "BasePath": "_content/BISTrackerBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
