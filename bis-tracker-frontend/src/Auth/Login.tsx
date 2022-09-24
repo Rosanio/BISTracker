@@ -1,5 +1,5 @@
 import { useState } from "react"
-import api from "./shared/utils/api"
+import api from "../shared/utils/api"
 import Cookies from 'js-cookie'
 import { AxiosResponse } from 'axios'
 
@@ -24,11 +24,6 @@ function Login() {
         setIsAuthenticated(true)
     }
 
-    const testAuthToken = async () => {
-        const response = await api.get('WeatherForecast', null)
-        console.log(response)
-    }
-
     return (
         <div style={{ position: 'absolute', width: '400px', height: '300px', top: '50%', left: '50%', margin: '-150px 0 0 -200px' }}>
             <form onSubmit={handleSubmit}>
@@ -46,10 +41,6 @@ function Login() {
                 </div>
                 <input type="submit" value="Submit" />
             </form>
-
-            {isAuthenticated ? (
-                <button onClick={testAuthToken}>Test</button>
-            ) : null}
         </div>
     )
 }

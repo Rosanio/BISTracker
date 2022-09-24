@@ -28,12 +28,11 @@ const api = (method: string, url: string, variables: any) =>
                 resolve(response)
             },
             error => {
+                console.log(error)
                 if (error.response) {
-                    reject(error.response.data.error)
+                    reject(error.response.data.message)
                 } else {
                     reject(defaults.error)
-                    console.log(error)
-                    console.log(`${defaults.baseURL}${url}`)
                 }
             },
         )

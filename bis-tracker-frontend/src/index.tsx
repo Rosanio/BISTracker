@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter, RouterProvider
 } from 'react-router-dom'
-import Login from './Login';
+import Login from './Auth/Login';
+import Register from './Auth/Register';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/register",
+    element: <Register />
   }
 ])
 

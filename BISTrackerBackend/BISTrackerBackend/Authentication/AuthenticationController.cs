@@ -63,7 +63,7 @@ namespace BISTrackerBackend.Authentication
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var existingUser = await userManager.FindByNameAsync(model.Username);
             if (existingUser != null)
@@ -72,11 +72,19 @@ namespace BISTrackerBackend.Authentication
             ApplicationUser user = new ApplicationUser()
             {
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                Email = model.Email,
             };
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed" });
+            {
+                string ErrorMessage = "User creation failed: ";
+                foreach(IdentityError error in result.Errors)
+                {
+                    ErrorMessage += error.Description + " ";
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = ErrorMessage });
+            }
 
             if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
